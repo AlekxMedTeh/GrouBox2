@@ -1,0 +1,51 @@
+<!DOCTYPE html> <!-- Объявление типа документа -->
+<html lang="ru"> <!-- Открывающий тег HTML с атрибутом языка -->
+
+<head> <!-- Открывающий тег заголовка документа -->
+<meta charset="UTF-8"> <!-- Устанавливает кодировку документа -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Устанавливает параметры вьюпорта для адаптивного дизайна -->
+<style> <!-- Открывающий тег стилевого блока -->
+
+  body { 
+    background-color: darkgreen;  /* Устанавливает тёмно-зелёный фон для всего тела документа */
+    color: lightgreen;  /* Устанавливает светло-зелёный цвет текста для всего тела документа */
+    font-family: Arial, sans-serif;  /* Устанавливает шрифт для текста в теле документа */
+  }
+  .data-container {
+    display: flex;  /* Устанавливает тип отображения контейнера как flex для упрощения выравнивания элементов */
+    flex-direction: column;  /* Устанавливает вертикальное направление элементов в контейнере */
+    align-items: center;  /* Выравнивает элементы по центру по горизонтали */
+    margin-top: 20px;  /* Устанавливает верхний отступ для контейнера */
+  }
+  .data-item {
+    margin: 10px 0;  /* Устанавливает верхний и нижний отступы для каждого элемента данных */
+    font-size: 24px;  /* Устанавливает размер шрифта для текста элемента данных */
+  }
+</style> <!-- Закрывающий тег стилевого блока -->
+</head> <!-- Закрывающий тег заголовка документа -->
+
+<body> <!-- Открывающий тег тела документа -->
+
+<div class="data-container"> <!-- Открывающий тег контейнера для элементов данных с классом для стилизации -->
+  <div class="data-item">Влажность: <span id="humidity">--</span>%</div> <!-- Элемент данных для отображения влажности с местом для вставки значения -->
+  <div class="data-item">Температура: <span id="temperature">--</span>°C</div> <!-- Элемент данных для отображения температуры с местом для вставки значения -->
+  <div class="data-item">Давление: <span id="pressure">--</span>hPa</div> <!-- Элемент данных для отображения давления с местом для вставки значения -->
+</div> <!-- Закрывающий тег контейнера для элементов данных -->
+
+<script> <!-- Открывающий тег блока скрипта для добавления JavaScript кода -->
+  function getParamsFromURL() { // Функция для получения параметров из URL
+    const urlParams = new URLSearchParams(window.location.search); // Создание объекта URLSearchParams для работы с параметрами URL
+    const humidity = urlParams.get('humidity'); // Получение значения параметра влажности из URL
+    const temperature = urlParams.get('temperature'); // Получение значения параметра температуры из URL
+    const pressure = urlParams.get('pressure'); // Получение значения параметра давления из URL
+
+    if (humidity) document.getElementById('humidity').textContent = humidity; // Установка значения влажности на страницу, если оно присутствует в URL
+    if (temperature) document.getElementById('temperature').textContent = temperature; // Установка значения температуры на страницу, если оно присутствует в URL
+    if (pressure) document.getElementById('pressure').textContent = pressure; // Установка значения давления на страницу, если оно присутствует в URL
+  }
+
+  window.onload = getParamsFromURL; // Вызов функции getParamsFromURL при загрузке страницы
+</script> <!-- Закрывающий тег блока скрипта -->
+
+</body> <!-- Закрывающий тег тела документа -->
+</html> <!-- Закрывающий тег HTML -->
